@@ -1,2 +1,4 @@
-API == dotnet watch run
-react client == npm start
+cd API == dotnet watch run
+cd client-app
+npm install
+npm start
