@@ -47,7 +47,7 @@ export default observer(function ActivityDetailedChat() {
                     <Form reply>
                         <Form.TextArea/>
                         <Button
-                          content='Add Replay'
+                          content='Add Reply'
                           labelPosition='left'
                           icon='edit'
                           primary
