@@ -9,6 +9,13 @@ namespace Persistence.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<bool>(
+                name: "IsCancelled",
+                table: "Activities",
+                type: "INTEGER",
+                nullable: false,
+                defaultValue: false);
+
             migrationBuilder.CreateTable(
                 name: "ActivityAttendees",
                 columns: table => new
@@ -44,6 +51,10 @@ namespace Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ActivityAttendees");
+
+            migrationBuilder.DropColumn(
+                name: "IsCancelled",
+                table: "Activities");
         }
     }
 }
