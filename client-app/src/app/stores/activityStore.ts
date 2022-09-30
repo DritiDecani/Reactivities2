@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import { tr } from "date-fns/locale";
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Activity, ActivityFormValues } from "../models/activity";
@@ -162,6 +161,22 @@ export default  class ActivityStore{
                 console.log(error);
             } finally {
                 runInAction(() => this.loading = false);
+            }
+        }
+
+        cancelAcivityToggle = async () =>{
+            this.loading = true;
+            try{
+                await agent.Activities.attend(this.selectedActivity!.id);
+                runInAction(() => {
+                    this.selectedActivity!.isCancelled = !this.selectedActivity?.isCancelled;
+                    this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!);
+                })
+            }catch(error){
+                console.log(error);
+            }finally{
+                runInAction(() => this.loading = false);
+                
             }
         }
     }
