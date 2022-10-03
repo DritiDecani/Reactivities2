@@ -25,7 +25,7 @@ namespace Application.Activities
             }
         }
 
-         public class Handler : IRequestHandler<Command, Result<Unit>>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
@@ -34,6 +34,7 @@ namespace Application.Activities
                 _userAccessor = userAccessor;
                 _context = context;
             }
+
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x => 

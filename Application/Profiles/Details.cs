@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
 using AutoMapper;
@@ -17,6 +15,7 @@ namespace Application.Profiles
         {
             public string Username { get; set; }
         }
+
         public class Handler : IRequestHandler<Query, Result<Profile>>
         {
             private readonly DataContext _context;
@@ -34,7 +33,7 @@ namespace Application.Profiles
                     .SingleOrDefaultAsync(x => x.Username == request.Username);
 
                 if (user == null) return null;
-                
+
                 return Result<Profile>.Success(user);
             }
         }
